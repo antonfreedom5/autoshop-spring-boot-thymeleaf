@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Список автомобилей</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+        <div class="col-md-6">
+            <a href="/" class="btn btn-light">На главную</a>
+            <a href="/auto/add" class="btn btn-primary">Добавить автомобиль</a>
+            <h3 th:if="${autos.isEmpty()}">Нет доступных автомобилей!</h3>
+            <div th:if="${!autos.isEmpty()}">
+                <h2 class="my-5">Автомобили</h2>
+                <table class="table table-striped table-responsive-md">
+                    <thead>
+                    <tr>
+                        <th>Марка</th>
+                        <th>Модель</th>
+                        <th>Год</th>
+                        <th>Цена</th>
+                        <th>Комплектация</th>
+                        <th>Редактировать</th>
+                        <th>Удалить</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="auto : ${autos}">
+                        <td th:text="${auto.name}"></td>
+                        <td th:text="${auto.model}"></td>
+                        <td th:text="${auto.year}"></td>
+                        <td th:text="${auto.price}"></td>
+                        <td th:text="${auto.complectation.name}"></td>
+                        <td><a th:href="@{/auto/edit/{id}(id=${auto.id})}" class="btn btn-primary">Редактировать</a></td>
+                        <td><a th:href="@{/auto/delete/{id}(id=${auto.id})}" class="btn btn-danger">Удалить</a></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
