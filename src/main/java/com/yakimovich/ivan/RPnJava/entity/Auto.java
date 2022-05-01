@@ -61,4 +61,9 @@ public class Auto {
     public void setComplectation(Complectation complectation) {
         this.complectation = complectation;
     }
+
+    @Override
+    public String toString() {
+        return name + ", " + model + ", " + year + ", " + price + ", " + complectation.getName();
+    }
 }
